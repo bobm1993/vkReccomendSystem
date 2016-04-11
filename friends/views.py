@@ -31,15 +31,15 @@ def friends_list(request):
             if fr not in friends:
                 full_super_friend_list.append(fr)
 
-    for idx, sup in enumerate(super_friend_list):
+    for sup in super_friend_list:
         i = 0
         for full_sup in full_super_friend_list:
             if sup == full_sup:
                 i += 1
-        rates[idx] = i
-        k += rates[idx]
-    for idx, rat in enumerate(rates):
-        rates[idx] = rat / k
+        rates.append(i)
+        k += rates[-1]
+    for rat in rates:
+        rates.append(rat / k)
     diction = dict(zip(super_friend_list, rates))
     diction_sort = sorted(diction.items(), reverse=True)
     diction_top10 = diction_sort[:10]
