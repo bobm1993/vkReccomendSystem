@@ -5,7 +5,7 @@
     <title>home</title>
 </head>
 <body>
-    <form id="user_form" action="/friends/" method="post">
+    <form id="user_form" action="/recommend/" method="post">
         {% csrf_token %}
         <input type="text" name="your_id" id="your_id" value="{{ user_form.current_id }}">
         <button type="submit">OK</button>
