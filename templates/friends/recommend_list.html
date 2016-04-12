@@ -7,6 +7,10 @@
     <title>recommend list</title>
 </head>
 <body>
-    {{ rec_list }}
+<div class="row">
+    {% for rec in rec_list %}
+        {{ rec }}
+    {% endfor %}
+</div>
 </body>
 </html>

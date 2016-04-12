@@ -4,6 +4,7 @@ import vk.exceptions
 import time
 import socket
 import errno
+import operator
 
 host = '127.0.0.1'
 port = 8000
@@ -18,30 +19,26 @@ def home(request):
 def friends_list(request):
     current_id = request.POST.get('your_id')
     friends = friends_get(current_id)
-    super_friend_list = []
     full_super_friend_list = []
     rates = []
-    k = 0
     for friend in friends:
-        time.sleep(0.34)
+        time.sleep(0.1)
         fr_friends = friends_get(friend)
+        print(fr_friends)
         for fr in fr_friends:
-            if (fr not in friends) and (fr not in super_friend_list):
-                super_friend_list.append(fr)
-            if fr not in friends:
+            if fr not in friends and fr != int(current_id):
                 full_super_friend_list.append(fr)
 
+    super_friend_list = set(full_super_friend_list)
+
+    k = len(full_super_friend_list)
     for sup in super_friend_list:
-        i = 0
-        for full_sup in full_super_friend_list:
-            if sup == full_sup:
-                i += 1
+        i = full_super_friend_list.count(sup)/k
+        print(i)
         rates.append(i)
-        k += rates[-1]
-    for rat in rates:
-        rates.append(rat / k)
+
     diction = dict(zip(super_friend_list, rates))
-    diction_sort = sorted(diction.items(), reverse=True)
+    diction_sort = sorted(diction.items(), key=operator.itemgetter(1), reverse=True)
     diction_top10 = diction_sort[:10]
 
     # time.sleep(0.34)
