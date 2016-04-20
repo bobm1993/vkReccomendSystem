@@ -1,0 +1,25 @@
+#bod {
+    background-color: cornflowerblue;
+}
+
+#user_form {
+    width: 350px;
+    height: 100px;
+    background-color: whitesmoke;
+    border: 1px solid whitesmoke;
+    border-radius: 25px;
+    text-align: center;
+    vertical-align: middle;
+    margin: 200px auto auto;
+}
+
+h3 {
+    color: black;
+    font-family: sans-serif;
+}
+
+* a {
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 14px;
+}

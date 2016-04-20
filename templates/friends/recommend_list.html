@@ -1,17 +1,38 @@
-
-
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>recommend list</title>
-</head>
-<body>
-<div class="row">
-    {% for rec in rec_list %}
-        <a href="https://vk.com/id{{ rec }}">{{ rec }}</a>
-        <br>
-    {% endfor %}
-</div>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>recommend list</title>
+        <link rel="stylesheet" href="{% static 'css/recommend.css' %}">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Photo/Link</th>
+                                <th>First name</th>
+                                <th>Last name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for rec in rec_list %}
+                                    <tr>
+                                        <td><a href="https://vk.com/id{{ rec.uid }}">
+                                            <img src={{ rec.photo_50 }}></a>
+                                        </td>
+                                        <td>{{ rec.first_name }}</td>
+                                        <td>{{ rec.last_name }}</td>
+                                    </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
